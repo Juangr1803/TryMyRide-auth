@@ -1,0 +1,40 @@
+{
+  "name": "MyTryRide-auth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/backend/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Juangr1803/MyTryRide-auth.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Juangr1803/MyTryRide-auth/issues"
+  },
+  "homepage": "https://github.com/Juangr1803/MyTryRide-auth#readme",
+  "dependencies": {
+    "@hapi/boom": "^9.1.1",
+    "@hapi/joi": "^17.1.1",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.6.3",
+    "passport": "^0.4.1",
+    "passport-http": "^0.3.0",
+    "passport-jwt": "^4.0.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  },
+  "devDependencies": {
+    "chalk": "^4.1.0",
+    "nodemon": "^2.0.6"
+  }
+}
