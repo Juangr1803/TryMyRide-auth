@@ -33,6 +33,10 @@ require('../utils/auth/strategies/basic');
 // POST Sign-in
 router.post('/sign-in', async (req, res, next) => {
   const { apiKeyToken } = req.body;
+  const user = {
+    email: req.body.email,
+    password: req.body.password,
+  };
 
   if (!apiKeyToken) {
     response.error(
@@ -46,9 +50,35 @@ router.post('/sign-in', async (req, res, next) => {
   }
 
   // Passport
-  passport.authenticate('basic', (err, user) => {
-    try {
-      if (err || !user) {
+  // passport.authenticate('basic', (err, user) => {
+  try {
+    // if (err || !user) {
+    //   response.error(
+    //     req,
+    //     res,
+    //     'Email or Password invalid',
+    //     401,
+    //     boom.unauthorized()
+    //   );
+    //   next(boom.unauthorized());
+    // }
+
+    // Login
+    req.login(user, { session: false }, async (err) => {
+      if (err) {
+        response.error(
+          req,
+          res,
+          'Email or Password invalid',
+          401,
+          boom.unauthorized()
+        );
+        next(err);
+      }
+
+      const apiKey = await apiKeysService.getApiKey({ token: apiKeyToken });
+
+      if (!apiKey) {
         response.error(
           req,
           res,
@@ -59,58 +89,32 @@ router.post('/sign-in', async (req, res, next) => {
         next(boom.unauthorized());
       }
 
-      // Login
-      req.login(user, { session: false }, async (err) => {
-        if (err) {
-          response.error(
-            req,
-            res,
-            'Email or Password invalid',
-            401,
-            boom.unauthorized()
-          );
-          next(err);
-        }
+      const { _id: id, name, email } = user;
 
-        const apiKey = await apiKeysService.getApiKey({ token: apiKeyToken });
+      const payload = {
+        sub: id,
+        name,
+        email,
+        scopes: apiKey.scopes,
+      };
 
-        if (!apiKey) {
-          response.error(
-            req,
-            res,
-            'Email or Password invalid',
-            401,
-            boom.unauthorized()
-          );
-          next(boom.unauthorized());
-        }
-
-        const { _id: id, name, email } = user;
-
-        const payload = {
-          sub: id,
-          name,
-          email,
-          scopes: apiKey.scopes,
-        };
-
-        const token = jwt.sign(payload, config.authJwtSecret, {
-          expiresIn: '15m',
-        });
-
-        response.success(
-          req,
-          res,
-          { token, user: { id, name, email } },
-          201,
-          'user login'
-        );
+      const token = jwt.sign(payload, config.authJwtSecret, {
+        expiresIn: '15m',
       });
-    } catch (err) {
-      response.error(req, res, 'Internal error', 500, err);
-      next(err);
-    }
-  })(req, res, next);
+
+      response.success(
+        req,
+        res,
+        { token, user: { id, name, email } },
+        201,
+        'user login'
+      );
+    });
+  } catch (err) {
+    response.error(req, res, 'Internal error', 500, err);
+    next(err);
+  }
+  // })(req, res, next);
 });
 
 // POST Sign-up
