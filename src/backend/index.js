@@ -10,8 +10,11 @@ const config = require('./config');
 // Middlewares
 const bodyParser = require('body-parser');
 const notFoundHandler = require('./utils/middleware/notFoundHandler');
+const passport = require('passport');
+const cookieParser = require('cookie-parser');
 // Path
 const path = require('path');
+// Passport
 
 //-----------------------------------------//
 //-----------------------------------------//
@@ -20,6 +23,9 @@ const path = require('path');
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Router
 router(app);

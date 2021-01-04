@@ -1,7 +1,5 @@
 // React
 import React from 'react';
-// Components
-import Login from '../components/Login';
 
 //-----------------------------------------------//
 //-----------------------------------------------//
@@ -10,7 +8,7 @@ import Login from '../components/Login';
 const Home = () => {
   return (
     <>
-      <Login></Login>
+      <h1>Bienvenido a Try My Ride !!</h1>
     </>
   );
 };

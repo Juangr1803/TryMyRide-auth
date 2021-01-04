@@ -1,31 +1,33 @@
 // React
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import { Router } from 'react-router';
-import { createBrowserHistory } from 'history';
+// Redux
 import { Provider } from 'react-redux';
-import { createStore, compose, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+// Thunk
 import thunk from 'redux-thunk';
-import reducer from './reducers/index';
-
+// Reducer
+import appReducer from './reducers';
 // Routes
 import App from './routes/App';
+// Styles
+import './assets/styles/index.css';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const preloadedState = window.__PRELOADED_STATE__;
+//--------------------------------------------//
+//--------------------------------------------//
+
+const middleware = [thunk];
+
 const store = createStore(
-  reducer,
-  preloadedState,
-  composeEnhancers(applyMiddleware(thunk))
+  appReducer,
+  composeWithDevTools(applyMiddleware(...middleware))
 );
-const history = createBrowserHistory();
 
+// React Dom
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
-      <App />
-    </Router>
+    <App />
   </Provider>,
   document.getElementById('app')
 );

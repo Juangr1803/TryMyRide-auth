@@ -25,26 +25,26 @@ module.exports = {
       //     loader: 'html-loader',
       //   },
       // },
-      // {
-      //   test: /\.css$/,
-      //   use: [
-      //     {
-      //       loader: MiniCssExtractPlugin.loader,
-      //     },
-      //     'css-loader',
-      //   ],
-      // },
-      // {
-      //   test: /\.(png|gif|jpg)$/,
-      //   use: [
-      //     {
-      //       loader: 'file-loader',
-      //       options: {
-      //         name: 'assets/[hash].[ext]',
-      //       },
-      //     },
-      //   ],
-      // },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          'css-loader',
+        ],
+      },
+      {
+        test: /\.(png|gif|jpg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'assets/[hash].[ext]',
+            },
+          },
+        ],
+      },
     ],
   },
   // devServer: {
@@ -53,13 +53,13 @@ module.exports = {
   //   port: 8000,
   //   historyApiFallback: true,
   // },
-  // plugins: [
-  //   new HtmlWebpackPlugin({
-  //     template: './src/backend/public/index.html',
-  //     filename: './index.html',
-  //   }),
-  //   new MiniCssExtractPlugin({
-  //     template: 'assets/[name].css',
-  //   }),
-  // ],
+  plugins: [
+    // new HtmlWebpackPlugin({
+    //   template: './src/backend/public/index.html',
+    //   filename: './index.html',
+    // }),
+    new MiniCssExtractPlugin({
+      template: 'assets/[name].css',
+    }),
+  ],
 };

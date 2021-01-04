@@ -1,4 +1,3 @@
-// types
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -7,9 +6,31 @@ import {
   LOGOUT,
 } from '../actions/types';
 
-const user = JSON.parse(localStorage.getItem('user'));
+const name =
+  document.cookie.indexOf('name=') === -1
+    ? ''
+    : ('; ' + document.cookie).split('; name=')[1].split(';')[0];
+const email =
+  document.cookie.indexOf('email=') === -1
+    ? ''
+    : ('; ' + document.cookie).split('; email=')[1].split(';')[0];
+const id =
+  document.cookie.indexOf('id=') === -1
+    ? ''
+    : ('; ' + document.cookie).split('; id=')[1].split(';')[0];
+const token =
+  document.cookie.indexOf('token=') === -1
+    ? ''
+    : ('; ' + document.cookie).split('; token=')[1].split(';')[0];
 
-const initialState = user
+const user = {
+  name,
+  email,
+  id,
+  token,
+};
+
+const initialState = user.id
   ? { isLoggedIn: true, user }
   : { isLoggedIn: false, user: null };
 
