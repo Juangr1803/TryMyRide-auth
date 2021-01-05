@@ -7,13 +7,13 @@
 }
 
 body {
-  font-family: 'Lato', 'Helvetica Neue', sans-serif;
+  font-family: 'Helvetica', sans-serif;
   background-color: #f4f4f7;
   margin: 0;
 }
 
-h1 {
-  font-family: 'Anton', sans-serif;
+a {
+  list-style: none;
 }
 
 a.link-unstyled {

@@ -48,7 +48,7 @@ class Login extends Component {
     });
   }
 
-  handleLogin(e) {
+  async handleLogin(e) {
     e.preventDefault();
 
     this.setState({
@@ -60,20 +60,19 @@ class Login extends Component {
     const { dispatch, history } = this.props;
 
     if (this.checkBtn.context._errors.length === 0) {
-      dispatch(
-        login(this.state.email, this.state.password, this.state.apiKeyToken)
-      )
-        .then(() => {
-          history.push('/');
-          this.setState({
-            loading: false,
-          });
-        })
-        .catch(() => {
-          this.setState({
-            loading: false,
-          });
+      try {
+        await dispatch(
+          login(this.state.email, this.state.password, this.state.apiKeyToken)
+        );
+        await this.setState({
+          loading: false,
         });
+      } catch (error) {
+        console.log(error);
+        this.setState({
+          loading: false,
+        });
+      }
     } else {
       this.setState({
         loading: false,

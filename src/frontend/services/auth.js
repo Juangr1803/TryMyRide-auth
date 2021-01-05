@@ -42,7 +42,7 @@ class AuthService {
   }
 
   // Login User
-  loginUser(email, password, token) {
+  async loginUser(email, password, token) {
     return axios({
       url: `${API_URL}/sign-in`,
       headers: { Authorization: `Bearer ${token}` },
@@ -51,17 +51,15 @@ class AuthService {
         username: email,
         password,
       },
-    })
-      .then(({ data }) => {
+    }).then(({ data }) => {
+      if (data) {
         document.cookie = `email=${data.body.user.email}`;
         document.cookie = `name=${data.body.user.name}`;
         document.cookie = `id=${data.body.user.id}`;
         document.cookie = `token=${data.body.token}`;
-      })
-      .then(() => {
         window.location.href = '/';
-      })
-      .catch((err) => console.log(err));
+      }
+    });
   }
 
   logoutUser() {
@@ -77,6 +75,25 @@ class AuthService {
       email,
       password,
     });
+  }
+
+  updatedUser(name, email, password, id) {
+    console.log(name, email, password);
+    return axios
+      .put(`${API_URL}/updated-data/${id}`, {
+        name,
+        email,
+        password,
+      })
+      .then(() => {
+        document.cookie = `email=${email}`;
+        document.cookie = `name=${name}`;
+        document.cookie = `id=${id}`;
+      })
+      .then(() => {
+        window.location.href = '/';
+      })
+      .catch((err) => console.log(err));
   }
 }
 

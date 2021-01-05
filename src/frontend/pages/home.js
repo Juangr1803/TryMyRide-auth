@@ -1,5 +1,9 @@
 // React
 import React from 'react';
+// Images
+import Logo from '../assets/static/Logo-trymyride.png';
+// Styles
+import '../assets/styles/pages/Home.css';
 
 //-----------------------------------------------//
 //-----------------------------------------------//
@@ -7,9 +11,13 @@ import React from 'react';
 // Home
 const Home = () => {
   return (
-    <>
-      <h1>Bienvenido a Try My Ride !!</h1>
-    </>
+    <div className="home">
+      <img className="home__logo" src={Logo} />
+      <div className="home__title">
+        <h1 className="home__title--item1">Ciudades con mejor aire</h1>
+        <h1 className="home__title--item2">para respirar</h1>
+      </div>
+    </div>
   );
 };
 

@@ -35,15 +35,15 @@ router.post('/sign-in', async (req, res, next) => {
   // Passport
   passport.authenticate('basic', (err, user) => {
     try {
-      if (!user) {
+      if (err || !user) {
         response.error(
           req,
           res,
           'Email or Password invalid',
           401,
-          boom.unauthorized()
+          'Email or Password invalid'
         );
-        next(boom.unauthorized());
+        // next(boom.unauthorized());
       }
 
       // Login
@@ -54,9 +54,9 @@ router.post('/sign-in', async (req, res, next) => {
             res,
             'Email or Password invalid',
             401,
-            boom.unauthorized()
+            'Email or Password invalid'
           );
-          next(err);
+          // next(err);
         }
 
         const { _id: id, name, email } = user;
@@ -112,6 +112,7 @@ router.put(
   async (req, res, next) => {
     const { userId } = req.params;
     const { body: user } = req;
+    console.log(user);
 
     try {
       const updateUserId = await usersService.updateUser({

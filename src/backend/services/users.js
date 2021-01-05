@@ -36,6 +36,44 @@ class UsersService {
 
   // PUT
   async updateUser({ userId, user } = {}) {
+    if (user.name && user.email && user.password) {
+      const hashedPassword = await bcrypt.hash(user.password, 10);
+      let allDataUser = {
+        name: user.name,
+        email: user.email,
+        password: hashedPassword,
+      };
+      user = allDataUser;
+    } else if (user.name && user.email) {
+      let allDataUser = {
+        name: user.name,
+        email: user.email,
+      };
+      user = allDataUser;
+    } else if (user.name && user.password) {
+      const hashedPassword = await bcrypt.hash(user.password, 10);
+      let allDataUser = {
+        name: user.name,
+        password: hashedPassword,
+      };
+      user = allDataUser;
+    } else if (user.email && user.password) {
+      const hashedPassword = await bcrypt.hash(user.password, 10);
+      let allDataUser = {
+        email: user.email,
+        password: hashedPassword,
+      };
+      user = allDataUser;
+    } else {
+      const hashedPassword = await bcrypt.hash(user.password, 10);
+      let allDataUser = {
+        password: hashedPassword,
+      };
+      user = allDataUser;
+    }
+
+    console.log(user);
+
     const updatedUserId = await this.mongoDB.update(
       this.collection,
       userId,
