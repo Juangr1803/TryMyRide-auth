@@ -7,7 +7,7 @@ module.exports = {
   entry: './src/frontend/index.js',
   // Output
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'src/backend/public'),
     filename: 'bundle.js',
   },
   module: {
@@ -19,12 +19,12 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
-      {
-        test: /\.html$/,
-        use: {
-          loader: 'html-loader',
-        },
-      },
+      // {
+      //   test: /\.html$/,
+      //   use: {
+      //     loader: 'html-loader',
+      //   },
+      // },
       {
         test: /\.css$/,
         use: [
@@ -47,17 +47,17 @@ module.exports = {
       },
     ],
   },
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 8000,
-    historyApiFallback: true,
-  },
+  // devServer: {
+  //   contentBase: path.join(__dirname, 'dist'),
+  //   compress: true,
+  //   port: 8000,
+  //   historyApiFallback: true,
+  // },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/frontend/public/index.html',
-      filename: './index.html',
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: './src/backend/public/index.html',
+    //   filename: './index.html',
+    // }),
     new MiniCssExtractPlugin({
       template: 'assets/[name].css',
     }),
