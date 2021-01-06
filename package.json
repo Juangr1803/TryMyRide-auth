@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/backend/index.js",
-    "start": "NODE_ENV=production node src/backend/index.js",
+    "start": "node src/backend/index.js",
     "postinstall": "npm run build",
-    "build": "NODE_ENV=production webpack --mode production"
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
