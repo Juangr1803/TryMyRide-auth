@@ -4,7 +4,7 @@ import { Router, Switch, Route, Link } from 'react-router-dom';
 // Helpers
 import { history } from '../helpers/history';
 // Pages
-import Home from '../pages/Home';
+import Home from '../pages/Home.js';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Profile from '../pages/Profile';
@@ -20,7 +20,7 @@ const App = () => {
     <Router history={history}>
       <Layout>
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/home" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/profile" component={Profile} />
