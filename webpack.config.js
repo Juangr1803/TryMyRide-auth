@@ -56,14 +56,6 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/backend/public/index.html',
-      minify: {
-        collapseWhitespace: true,
-        removeComments: true,
-        removeRedundantAttributes: true,
-        removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        useShortDoctype: true,
-      },
     }),
     new MiniCssExtractPlugin({
       template: 'assets/[name].css',
