@@ -2,8 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const devMode = process.env.NODE_ENV !== 'production';
-
 module.exports = {
   // Entry
   entry: './src/frontend/index.js',
@@ -28,9 +26,11 @@ module.exports = {
       //   },
       // },
       {
-        test: /\.css/,
+        test: /\.css$/,
         use: [
-          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
           'css-loader',
         ],
       },
@@ -54,9 +54,10 @@ module.exports = {
   //   historyApiFallback: true,
   // },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/backend/public/index.html',
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: './src/backend/public/index.html',
+    //   filename: './index.html',
+    // }),
     new MiniCssExtractPlugin({
       template: 'assets/[name].css',
     }),
