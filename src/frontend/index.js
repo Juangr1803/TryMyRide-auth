@@ -10,7 +10,7 @@ import thunk from 'redux-thunk';
 // Reducer
 import appReducer from './reducers';
 // Routes
-import App from './routes/App';
+import App from './routes/App.js';
 // Styles
 import './assets/styles/index.css';
 
