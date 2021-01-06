@@ -14,7 +14,6 @@ const passport = require('passport');
 const cookieParser = require('cookie-parser');
 // Path
 const path = require('path');
-// Passport
 
 //-----------------------------------------//
 //-----------------------------------------//
@@ -29,11 +28,11 @@ app.use(passport.session());
 
 // Router
 router(app);
-// Route Catch 404
-// app.use(notFoundHandler);
 
 // Static files
 app.use(express.static(path.join(__dirname, 'public')));
+// Route Catch 404
+app.use(notFoundHandler);
 
 // Listen Port
 app.listen(config.port, (err) => {

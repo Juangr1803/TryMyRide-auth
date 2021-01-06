@@ -1,0 +1,17 @@
+{
+  "name": "trymyride-auth",
+  "version": 2,
+  "builds": [
+    {
+      "src": "/src/backend/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "methods": ["GET", "POST", "PUT"],
+      "dest": "/src/backend/index.js"
+    }
+  ]
+}

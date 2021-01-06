@@ -99,6 +99,7 @@ typings/
 # Optional npm cache directory
 .npm
 src/backend/public/
+.vercel
 # Optional eslint cache
 .eslintcache
 
@@ -197,3 +198,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/node,react,windows,linux,macos
+.vercel
