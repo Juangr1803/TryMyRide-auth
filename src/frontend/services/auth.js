@@ -5,7 +5,8 @@ import axios from 'axios';
 //----------------------------------------------------//
 
 // Api
-const API_URL = 'http://localhost:3000/api/auth';
+// const API_URL = 'http://localhost:3000/api/auth';
+const API_URL = '/api/auth';
 
 // AUth Service
 class AuthService {

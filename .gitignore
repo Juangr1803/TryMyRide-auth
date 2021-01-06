@@ -98,7 +98,7 @@ typings/
 
 # Optional npm cache directory
 .npm
-
+src/backend/public/
 # Optional eslint cache
 .eslintcache
 
